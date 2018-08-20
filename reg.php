@@ -13,7 +13,16 @@
     </p>
 <!--**** В текстовое поле (name="login" type="text") пользователь вводит свой логин ***** -->
 <p>
-    <label>Ваш пароль:<br></label>
+    <label>Введите Ваш пароль<br />или скопируйте сгенерированный случайно пароль,<br />не потеряйте его:<br />
+        <strong>
+            <?php
+                $str = 'qwertyuiopasdfghjklzxcvbnm0123456789'; //все латинские буквы
+                $newStr = str_shuffle($str); //перемешиваем их
+                $password = substr($newStr, 0, 8); //берем первые 6 символов
+                echo $password;
+            ?>
+        </strong>
+    <br></label>
     <input name="password" type="password" size="15" maxlength="15">
     </p>
 <!--**** В поле для паролей (name="password" type="password") пользователь вводит свой пароль ***** -->

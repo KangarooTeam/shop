@@ -1,3 +1,4 @@
+<meta charset="utf-8">
 <?php
     if (isset($_POST['login'])) { $login = $_POST['login']; if ($login == '') { unset($login);} } //заносим введенный пользователем логин в переменную $login, если он пустой, то уничтожаем переменную
     if (isset($_POST['password'])) { $password=$_POST['password']; if ($password =='') { unset($password);} }
@@ -18,13 +19,16 @@
     include ("bd.php");// файл bd.php должен быть в той же папке, что и все остальные, если это не так, то просто измените путь
  // проверка на существование пользователя с таким же логином
     $result = mysql_query("SELECT id FROM users WHERE login='$login'",$db);
-    print_r($result);
-    //$myrow = mysql_fetch_array($result);
+    //print_r($result);
+    $myrow = mysql_fetch_array($result);
     if (!empty($myrow['id'])) {
     exit ("Извините, введённый вами логин уже зарегистрирован. Введите другой логин.");
     }
  // если такого нет, то сохраняем данные
-    $result2 = mysql_query ("INSERT INTO users (login,password) VALUES('$login','$password')");
+    $result2 = 'FALSE';
+    if ((strlen($login) > 2) and (strlen($password) > 5)) { // проверяем на длину вводиммых данных
+        $result2 = mysql_query("INSERT INTO users (login,password) VALUES('$login','$password')");
+    }
     // Проверяем, есть ли ошибки
     if ($result2=='TRUE')
     {
@@ -34,4 +38,3 @@
     echo "Ошибка! Вы не зарегистрированы.";
     }
     ?>
-<meta charset="utf-8">
