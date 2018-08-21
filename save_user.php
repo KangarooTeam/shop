@@ -29,29 +29,29 @@
     switch ($password) { // проверяем на наличие нативного пароля
         case "qwerty":
             $result2 = "FALSE";
-            echo "Нативный пароль";
+            echo "Нативный пароль".'<br />';
             break;
         case "password":
             $result2 = "FALSE";
-            echo "Нативный пароль";
+            echo "Нативный пароль".'<br />';
             break;
         case "123456":
             $result2 = "FALSE";
-            echo "Нативный пароль";
+            echo "Нативный пароль".'<br />';
             break;
     }
     switch ($login) { // проверяем на наличие нативного пароля
         case "administrator":
             $result2 = "FALSE";
-            echo "Логин недоступен";
+            echo "Логин недоступен".'<br />';
             break;
         case "moderator":
             $result2 = "FALSE";
-            echo "Логин недоступен";
+            echo "Логин недоступен".'<br />';
             break;
         case "lodhel":
             $result2 = "FALSE";
-            echo "Логин недоступен";
+            echo "Логин недоступен".'<br />';
             break;
     }
     if ($result2=='TRUE') {
@@ -63,6 +63,7 @@
     if ($result2=='TRUE')
     {
     echo "Вы успешно зарегистрированы! Теперь вы можете зайти на сайт. <a href='index.php'>Главная страница</a>";
+        file_put_contents('users.txt', "Логин: ".$login." "."Пароль: ".$password);//  записывай в файл тхт
     }
  else {
     echo "Ошибка! Вы не зарегистрированы.";

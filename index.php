@@ -1,8 +1,37 @@
-
 <?php
+
+"<meta charset=utf-8>";
     //  вся процедура работает на сессиях. Именно в ней хранятся данные  пользователя, пока он находится на сайте. Очень важно запустить их в  самом начале странички!!!
     session_start();
-    ?>
+$visit_counter = 0;
+if (isset($_COOKIE['visitCounter']) &&
+is_numeric($_COOKIE['visitCounter'])){
+    $visit_counter = $_COOKIE['visitCounter']*1;
+}
+
+$visit_counter++;
+echo "посетило: ".$visit_counter.'<br />';
+//file_put_contents('users.txt', "Логин: ".$login." "."Пароль: ".$password);/
+$last_visit = '';
+if (isset($_COOKIE['lastVisit'])){
+    $last_visit=htmlspecialchars($_COOKIE['lastVisit'],
+    ENT_QUOTES);
+    $last_visit=stripslashes(trim($last_visit));
+}
+    setcookie ('visitCounter', $visit_counter, 0x7FFFFFFF) ;
+    setcookie ('lastVisit', date ('d/m/Y H:i:s'), 0x7FFFFFFF);
+
+if($visit_counter == 1) {
+    print ' < h2>Добро пожаловать!</h2 > ';
+} else {
+    print <<<HTML
+<h2> Вы здесь уже $visit_counter раз</h2>
+<p>Последнее сообщение: $last_visit</p>
+HTML;
+
+}
+
+?>
     <html>
     <head>
     <title>Главная страница</title>
