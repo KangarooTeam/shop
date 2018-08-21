@@ -25,20 +25,39 @@
     exit ("Извините, введённый вами логин уже зарегистрирован. Введите другой логин.");
     }
  // если такого нет, то сохраняем данные
-    $result2 = 'FALSE';
-    if ((strlen($login) > 2) and (strlen($password) > 5)) { // проверяем на длину вводиммых данных
-        $result2 = mysql_query("INSERT INTO users (login,password) VALUES('$login','$password')");
-    }
+    $result2 = 'TRUE';
     switch ($password) { // проверяем на наличие нативного пароля
         case "qwerty":
             $result2 = "FALSE";
+            echo "Нативный пароль";
             break;
         case "password":
             $result2 = "FALSE";
+            echo "Нативный пароль";
             break;
         case "123456":
             $result2 = "FALSE";
+            echo "Нативный пароль";
             break;
+    }
+    switch ($login) { // проверяем на наличие нативного пароля
+        case "administrator":
+            $result2 = "FALSE";
+            echo "Логин недоступен";
+            break;
+        case "moderator":
+            $result2 = "FALSE";
+            echo "Логин недоступен";
+            break;
+        case "lodhel":
+            $result2 = "FALSE";
+            echo "Логин недоступен";
+            break;
+    }
+    if ($result2=='TRUE') {
+        if ((strlen($login) > 2) and (strlen($password) > 5)) { // проверяем на длину вводиммых данных
+            $result2 = mysql_query("INSERT INTO users (login,password) VALUES('$login','$password')");
+        }
     }
     // Проверяем, есть ли ошибки
     if ($result2=='TRUE')
