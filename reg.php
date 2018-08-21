@@ -18,7 +18,7 @@
             <?php
                 $str = 'qwertyuiopasdfghjklzxcvbnm0123456789'; //все латинские буквы
                 $newStr = str_shuffle($str); //перемешиваем их
-                $password = substr($newStr, 0, 8); //берем первые 6 символов
+                $password = substr($newStr, 0, 8); //берем первые 8 символов
                 echo $password;
             ?>
         </strong>

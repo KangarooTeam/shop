@@ -29,6 +29,17 @@
     if ((strlen($login) > 2) and (strlen($password) > 5)) { // проверяем на длину вводиммых данных
         $result2 = mysql_query("INSERT INTO users (login,password) VALUES('$login','$password')");
     }
+    switch ($password) { // проверяем на наличие нативного пароля
+        case "qwerty":
+            $result2 = "FALSE";
+            break;
+        case "password":
+            $result2 = "FALSE";
+            break;
+        case "123456":
+            $result2 = "FALSE";
+            break;
+    }
     // Проверяем, есть ли ошибки
     if ($result2=='TRUE')
     {
